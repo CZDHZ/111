@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<input type="file" onchange="getfiles(this)" name="file">
+<button id="button">注册</button>
+</body>
+</html>
+<script>
+    var file;
+    function getfiles(a) {
+
+        file.a.files
+
+    }
+   $('button').click=function () {
+       var fd=new FROMData();
+       for(var i=0;i<file.length;i++){
+           fd.append('files',file[i])
+       }
+       console.log(fd)
+
+   }
+
+</script>

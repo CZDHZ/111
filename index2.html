@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Dashboard Template for Bootstrap</title>
+    <style type="text/css">
+      .glyphicon glyphicon-trash{
+        text-align: center;
+      }
+    </style>
+  
+<!-- // -->
+ <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="dashboard.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Export</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item</a></li>
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+            <li><a href="">More navigation</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Dashboard</h1>
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <!-- form表单 -->
+        <form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">作者</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">标题</label>
+    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <!-- 富文本编辑器 -->
+
+
+  
+  
+  </div>
+  <div id="summernote"></div>
+  <div class="form-group">
+    
+  </div>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="lxz">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+          <h2 class="sub-header">Section title</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>name</th>
+                  <th>title</th>
+                  <th>content</th>
+                  <th>correct</th>
+                 
+              
+                </tr>
+              </thead>
+              <tbody>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+<script type="text/javascript">
+ $(function(){
+    $('#summernote').summernote();
+    $('#lxz').click(function(){
+    	var In=$('#exampleInputEmail1').val();
+    	var ps=$('#exampleInputPassword1').val();
+
+      var a=$('#summernote').summernote('code');
+    
+        $.ajax({
+          url:'http://localhost:3000/item/insert',
+          type:'post',
+          dataType:'json',
+          data:{a:$('#summernote').summernote('code'),bb:In,cc:ps},
+          success:function(e){
+            console.log(e)
+          }
+        })
+    })
+    
+     $.ajax({
+          url:'http://localhost:3000/item/hq',
+          type:'post',
+          dataType:'json',
+          success:function(e){
+          	for(var i in e){
+          		$('tbody').append("<tr>"+"<td>"+e[i].id+"</td>"+"<td>"+e[i].name+"</td>"+"<td>"+e[i].title+"</td>"+"<td>"+e[i].content+"</td>"+"<td class='cc glyphicon glyphicon-trash' aria-hidden='true' data-id='"+e[i].id+"'></td>"+"<td class='glyphicon glyphicon-pencil' aria-hidden='true'></td>"+"</tr>")
+          	}
+              $('.cc').click(function(){
+					var uid=$(this).attr('data-id');
+                  var _this=$(this)
+					$.ajax({
+						url:'http://localhost:3000/item/del',
+						type:'post',
+						data:{id:uid},
+						dataType:'json',
+						success:function(e){
+                            console.log(e)
+                            _this.parent().remove()
+						}
+
+					})
+				})
+
+          }
+        })
+     
+
+     
+     
+     
+
+    
+  });
+
+</script>
+ 
